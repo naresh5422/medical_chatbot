@@ -52,7 +52,7 @@ history_aware_retriever = create_history_aware_retriever(
 
 # Step_4: Create a QA chain to answer the question
 qa_system_prompt = """Use the following pieces of retrieved context to answer the question.
-If you don't know the answer, just say that you don't know.
+Keep the answer concise and to a maximum of two sentences. If you don't know the answer, just say that you don't know.
 
 {context}"""
 qa_prompt = ChatPromptTemplate.from_messages(
@@ -68,8 +68,8 @@ rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chai
 
 # Chat history (empty for first query)
 chat_history = []
-user_query = input("Write your question here: ")
+user_query = input("Write your query here: ")
 result = rag_chain.invoke({"input": user_query, "chat_history": chat_history})
 print("\nRESULTS:\n", result["answer"])
-if "source_documents" in result:
-    print("\nSOURCE DOCUMENTS:\n", result["source_documents"])
+if "context" in result:
+    print("\nSOURCE DOCUMENTS:\n", result["context"])
