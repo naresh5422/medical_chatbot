@@ -24,7 +24,7 @@ graph TD
         G --> H{RetrievalQA Chain};
         H --> I{FAISS Retriever};
         I --> J[Load FAISS Index];
-        I -- Relevant Chunks --> H;
+        I --> Relevant Chunks --> H;
         H --> K[LLM (Mistral-7B)];
         K -- Generated Answer --> G;
     end
