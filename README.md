@@ -25,7 +25,7 @@ graph TD
         H --> I{FAISS Retriever};
         I --> J[Load FAISS Index];
         I -- Relevant Chunks --> H;
-        H -- Context + Query --> K[LLM (Mistral-7B)];
+        H -- "Context + Query" --> K[LLM (Mistral-7B)];
         K -- Generated Answer --> G;
     end
 ```
